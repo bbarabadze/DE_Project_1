@@ -1,0 +1,1 @@
+from disaster_recovery.disaster_recovery import check_consistency
