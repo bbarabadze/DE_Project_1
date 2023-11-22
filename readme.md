@@ -18,9 +18,9 @@ flowchart LR
     style D fill:orange
     CR{Are original and\npartition files\nconsistent?}
     style CR fill:skyblue
-    AN5(Find top 10 most common names)
+    AN5(Find top 10 most\ncommon names)
     style AN5 fill:violet
-    AN6(Find top 5 most active users)
+    AN6(Find top 5 most\nactive users)
     style AN6 fill:violet
     END(End)
     S ----> F
