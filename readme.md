@@ -16,7 +16,8 @@ flowchart LR
     style E fill:red
     D(Partitioning files)
     style D fill:orange
-    CR{Are original and partition files consistent?}
+    CR{Are original and partition 
+    files consistent?}
     style CR fill:blue
     AN5(Find top 10 most common names)
     style AN5 fill:green
