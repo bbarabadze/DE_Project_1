@@ -8,7 +8,7 @@
 ```mermaid
 flowchart LR
     S(Start)
-    F{Does files and folders exist?}
+    F{Does files and\nfolders exist?}
     style F fill:skyblue
     LG(Log to the error file)
     style LG fill:gray
@@ -16,7 +16,7 @@ flowchart LR
     style E fill:red
     D(Partitioning files)
     style D fill:orange
-    CR{Are original and partition \\n files consistent?}
+    CR{Are original and\npartition files\nconsistent?}
     style CR fill:skyblue
     AN5(Find top 10 most common names)
     style AN5 fill:violet
