@@ -9,7 +9,7 @@
 flowchart LR
     S(Start)
     F{Does files and folders exist?}
-    style F fill:blue
+    style F fill:skyblue
     LG(Log to the error file)
     style LG fill:gray
     E(Raise an error)
@@ -17,7 +17,7 @@ flowchart LR
     D(Partitioning files)
     style D fill:orange
     CR{Are original and partition \\n files consistent?}
-    style CR fill:blue
+    style CR fill:skyblue
     AN5(Find top 10 most common names)
     style AN5 fill:green
     AN6(Find top 5 most active users)
