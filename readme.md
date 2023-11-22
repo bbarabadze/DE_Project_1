@@ -1,52 +1,55 @@
-# Social Network
+# Process large csv file with Multiprocessing module
 
-This program operates on a social network's data comprised of 4 CSV files, each containing specific tables:
+#### This program splits a large data file to chunks and does a parallel computations for each chunk.
+#### The file contains some data about trips by NY taxy companies. We need to calculate a total revenue of each company
 
-- **Friends table**: Contains information about friendships.
-- **Posts table**: Contains information about users' posting activities.
-- **Reactions table**: Contains information about user reactions.
-- **Users table**: Contains personal data about users.
-
-The program performs several tasks:
-- Checks the existence of data files.
-- Partitions reactions and posts files based on post or reaction type.
-- Verifies data consistency between original and partitioned files.
-- Analyzes data and:
-  - Prints a list of the top 10 most common names on the social network.
-  - Prints a list of the top 5 most active users on the social network.
 
 
 ```mermaid
-flowchart LR;
-    S(Start)
-    F{Does files and 
-    folders exist?}
-    style F fill:blue
-    LG(Log to the error file)
-    style LG fill:gray
-    E(Raise an error)
+flowchart TB;
+    S((Start))
+    style S fill:blue
+    F{Does file exist?}
+    style F fill:orange
+    E(IOError)
     style E fill:red
-    D(Partitioninng files)
-    style D fill:orange
-    CR{Are original and
-    partition files
-     consistent?}
-    style CR fill:blue
-    AN5(Find top 10 most 
-    common names)
-    style AN5 fill:green
-    AN6(Find top 5 most 
-    active users)
-    style AN6 fill:green
-    END(End)
+    D(Divide File to Chunks)
+    style D fill:brown
+    CR(Create Processes)
+    style CR fill:green
+    P1{{Process Chunk 1}}
+    style P1 fill:violet
+    P2{{Process Chunk 2}}
+    style P2 fill:violet
+    P3{{Process Chunk 3}}
+    style P3 fill:violet
+    P4{{Process Chunk 4}}
+    style P4 fill:violet
+    P5{{Process Chunk ...}}
+    style P5 fill:violet
+    P6{{Process Chunk N}}
+    style P6 fill:violet
+    Ex(Extract Results)
+    style Ex fill:gray
+    END((End))
+    style END fill:blue
     S ----> F
     F -->|yes| D
-    F ---->|no| LG
+    F ---->|no| E
     D -->CR
-    CR ----> |yes| AN5
-    CR ----> |no| LG
-    LG ----> E
+    CR ----> P1
+    CR ----> P2
+    CR ----> P3
+    CR ----> P4
+    CR ----> P5
+    CR ----> P6
+    P1 ----> Ex
+    P2 ----> Ex
+    P3 ----> Ex
+    P4 ----> Ex
+    P5 ----> Ex
+    P6 ----> Ex
     E ----> END
-    AN5 ----> AN6
-    AN6 ----> END
+    Ex ----> END
+
 ```
