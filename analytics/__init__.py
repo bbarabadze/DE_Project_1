@@ -1,2 +1,2 @@
-from analytics.analytics import top10_names, top5_most_active
+from analytics.analytics import top_names, top_most_active
 
