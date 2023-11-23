@@ -1,13 +1,13 @@
 # Social Network
 
-This program operates on a social network's data comprised of 4 CSV files, each containing specific tables:
+This application operates on a social network's data comprised of 4 CSV files, each containing specific tables:
 
 - **Friends table**: Contains information about friendships.
 - **Posts table**: Contains information about users' posting activities.
 - **Reactions table**: Contains information about user reactions.
 - **Users table**: Contains personal data about users.
 
-The program performs several tasks:
+The application performs several tasks:
 - Checks the existence of data files.
 - Partitions reactions and posts files based on post or reaction type.
 - Verifies data consistency between original and partitioned files.
@@ -15,6 +15,10 @@ The program performs several tasks:
   - Prints a list of the top 10 most common names on the social network.
   - Prints a list of the top 5 most active users on the social network.
 
+The application also includes an API (run api.py) with three endpoints, all utilizing the GET method:
+- "/get_friends/{user_id}": Retrieves a graph illustrating all friends of the specified user and their connections.
+- "/common_name/top/{top_number}": Retrieves the top <top number> most common names on the social network.
+- "/activity/top/{top_number}": Retrieves the top <top number> most active users on the social network.
 
 ```mermaid
 flowchart LR

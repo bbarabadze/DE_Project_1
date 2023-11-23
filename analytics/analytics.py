@@ -8,12 +8,12 @@ import numpy as np
 from pandas import Series, DataFrame
 
 
-def top_names(users_file: str, top_number: int) -> None:
+def top_names(users_file: str, top_number: int) -> DataFrame:
     """
     Creates and prints a list of top most common names from users file
     :param users_file: File containing all users from the social network
     :param top_number: Number of top names to be listed
-    :return: None
+    :return: Dataframe containing the top most common names from users file
     """
 
     # Loads the table from users file into the pandas dataframe
@@ -29,11 +29,14 @@ def top_names(users_file: str, top_number: int) -> None:
     top_name = name_count.sort_values(ascending=False).head(top_number)
 
     # Creates dataframe of top names with proper column names and indexing
-    top_names_df = pd.DataFrame({"Name": top_name.index, "Occurrences": top_name.values}, index=np.arange(1, 11))
+    top_names_df = pd.DataFrame({"Name": top_name.index, "Occurrences": top_name.values},
+                                index=np.arange(1, len(top_name) + 1))
 
     print(f"Listing top {top_number} most common names on the social network:\n")
     print(top_names_df)
     print("\n")
+
+    return top_names_df
 
 
 def count_activity(folder_name: str) -> Series:
@@ -46,7 +49,6 @@ def count_activity(folder_name: str) -> Series:
 
         # Filtering for .csv files
         if file.endswith(".csv"):
-
             # Loads the table from partition file into the pandas dataframe
             dataframe = pd.read_csv(folder_name + file)
 
@@ -112,7 +114,7 @@ def get_top_users(users_df: DataFrame, users_act_count_total: Series, top_number
     return top_list
 
 
-def top_most_active(reactions_folder: str, posts_folder: str, users_file: str, top_number: int) -> None:
+def top_most_active(reactions_folder: str, posts_folder: str, users_file: str, top_number: int) -> DataFrame:
     """
     Creates and prints a list of top most active users
     depending on reactions and posts files
@@ -120,7 +122,7 @@ def top_most_active(reactions_folder: str, posts_folder: str, users_file: str, t
     :param posts_folder: Path to the partitioned posts' folder
     :param users_file: File containing users list
     :param top_number: Number of top active users to be listed
-    :return: None
+    :return: A dataframe containing the top most active users
     """
 
     # Gets users table indexed by user ID
@@ -129,7 +131,8 @@ def top_most_active(reactions_folder: str, posts_folder: str, users_file: str, t
     number_of_users = len(users_df)
 
     # Initializes the series object, by which user activities have to be summarized
-    user_activity_count_total = pd.Series(np.zeros(number_of_users), index=np.arange(1, number_of_users + 1), dtype=pd.Int64Dtype())
+    user_activity_count_total = pd.Series(np.zeros(number_of_users), index=np.arange(1, number_of_users + 1),
+                                          dtype=pd.Int64Dtype())
 
     # On each iteration, gets user activity count object and sums them up
     for partial_user_act_count in count_activity(posts_folder):
@@ -144,3 +147,5 @@ def top_most_active(reactions_folder: str, posts_folder: str, users_file: str, t
 
     print(f"Listing top {top_number} people with the most posts and reactions:\n")
     print(top_users)
+
+    return top_users
